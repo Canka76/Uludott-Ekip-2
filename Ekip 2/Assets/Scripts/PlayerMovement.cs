@@ -7,14 +7,10 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _characterController;
     private Vector3 moveDirections;
     private Vector2 currentInput;
-    
-    
     public bool CanMove { get; private set; } = true;
     
     private bool isSprinting => canSprint && Input.GetKey(sprintKey);
     private bool ShouldJump => Input.GetKeyDown(jumpKey) && _characterController.isGrounded;
-    
-    
     
     [Header("Controls")] 
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
@@ -54,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
     }
 
     private void Update()
