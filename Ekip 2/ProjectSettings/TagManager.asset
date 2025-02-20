@@ -8,6 +8,7 @@ TagManager:
   - Bar/Green
   - Bar/Null
   - Rod
+  - FootSteps/Metal
   layers:
   - Default
   - TransparentFX

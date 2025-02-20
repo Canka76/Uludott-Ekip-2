@@ -253,11 +253,8 @@ public class FpsController : MonoBehaviour
             {
                 switch (hit.collider.tag)
                 {
-                    case "FootSteps/Wood":
+                    case "FootSteps/Bridge":
                         footStepAudioSource.PlayOneShot(woodClips[Random.Range(0,woodClips.Length -1 )]);
-                        break;
-                    case "FootSteps/Grass":
-                        footStepAudioSource.PlayOneShot(grassClips[Random.Range(0,grassClips.Length - 1)]);
                         break;
                     case "FootSteps/Metal":
                         footStepAudioSource.PlayOneShot(metalClips[Random.Range(0,metalClips.Length -1 )]);
