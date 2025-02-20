@@ -108,6 +108,14 @@ public class FpsController : MonoBehaviour
     private float defaultFOW;
     private Coroutine zoomRoutine;
     
+    [Header("Shake Settings")]
+    public float shakeDuration = 1f;       // Duration of the shake in seconds
+    public float shakeIntensity = 0.1f;    // Intensity of the shake
+    public float shakeSpeed = 10f;         // Speed of the shaking motion
+
+    private float shakeTimer = 0f;
+    private bool isShaking = false;
+    
     private Camera playerCamera;
     private CharacterController _characterController;
     private Vector3 moveDirections;
@@ -418,7 +426,7 @@ public class FpsController : MonoBehaviour
             StartCoroutine(CrouchStand());
         }
     }
-
+    
     private IEnumerator CrouchStand()
     {
         duringCrouchAnimation = true;
