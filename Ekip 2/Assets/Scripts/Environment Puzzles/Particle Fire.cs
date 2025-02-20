@@ -27,7 +27,7 @@ public class ParticleFire : MonoBehaviour
         for (int i = 0; i < fireParticleSystems.Length; i++)
         {
             var emission = fireParticleSystems[i].emission;
-            emission.rateOverTime = startIntesity[i] * currentIntensity;
+            emission.rate = startIntesity[i] * currentIntensity;
         }
     }
 

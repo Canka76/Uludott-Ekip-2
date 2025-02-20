@@ -7,6 +7,7 @@ TagManager:
   - Bar/Orange
   - Bar/Green
   - Bar/Null
+  - Rod
   layers:
   - Default
   - TransparentFX
