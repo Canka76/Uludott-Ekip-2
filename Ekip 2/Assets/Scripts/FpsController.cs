@@ -10,8 +10,9 @@ using Vector3 = UnityEngine.Vector3;
 
 public class FpsController : MonoBehaviour
 {
+    public static FpsController instance;
+    
     public bool CanMove { get; private set; } = true;
-
     private bool isSprinting => canSprint && Input.GetKey(sprintKey);
     private bool ShouldJump => Input.GetKeyDown(jumpKey) && _characterController.isGrounded;
 
@@ -89,7 +90,7 @@ public class FpsController : MonoBehaviour
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
     [SerializeField] private KeyCode zoomKey = KeyCode.Mouse1;
-    [SerializeField] private KeyCode interactKey = KeyCode.F;
+    [SerializeField] public KeyCode interactKey = KeyCode.F;
 
     [Header("Stamina Parameters")] [SerializeField]
     private float maxStamina = 100f;
@@ -137,6 +138,7 @@ public class FpsController : MonoBehaviour
     {
         playerCamera = GetComponentInChildren<Camera>();
         _characterController = GetComponent<CharacterController>();
+        instance = this;
 
         defaultYPos = playerCamera.transform.localPosition.y;
         
@@ -146,6 +148,7 @@ public class FpsController : MonoBehaviour
         defaultFOW = playerCamera.fieldOfView;
 
         currentStamina = maxStamina;
+        
     }
     
     void Update()
@@ -472,5 +475,10 @@ public class FpsController : MonoBehaviour
         }
 
         regeneratingStamina = null;
+    }
+
+    public void Sit()
+    {
+        Debug.Log("Sitting");
     }
 }
