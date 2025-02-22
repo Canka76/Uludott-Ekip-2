@@ -40,7 +40,7 @@ public class PlayerAnim : MonoBehaviour
     {
         // Play the animation
         animator.enabled = true;
-        //animator.Play("Sallanma");
+        animator.Play("Sallanma");
 
         // Wait for the desired duration
         yield return new WaitForSeconds(duration);

@@ -1,20 +1,21 @@
-using System.Collections;
 using UnityEngine;
 
 public class PipeDamage : MonoBehaviour
 {
-    private ParticleSystem _particleSystem;
+    public ParticleSystem _particleSystem;
     public bool shouldFire = false;
     public float damagePerSecond = 10f;
+
     private bool isPlayerInside = false;
     private GameObject player;
 
     void Start()
     {
-        _particleSystem = GetComponent<ParticleSystem>();
+        // Find the ParticleSystem in the children
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
         if (_particleSystem == null)
         {
-            Debug.LogError("ParticleSystem component is missing!");
+            Debug.LogError("No ParticleSystem found in children of " + gameObject.name);
         }
     }
 
@@ -24,24 +25,21 @@ public class PipeDamage : MonoBehaviour
         {
             DamagePlayer();
         }
+
         ParticleController();
     }
 
     void ParticleController()
     {
-        if (shouldFire)
+        if (_particleSystem == null) return;
+
+        if (shouldFire && !_particleSystem.isPlaying)
         {
-            if (!_particleSystem.isPlaying)
-            {
-                _particleSystem.Play();
-            }
+            _particleSystem.Play();
         }
-        else
+        else if (!shouldFire && _particleSystem.isPlaying)
         {
-            if (_particleSystem.isPlaying)
-            {
-                _particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            }
+            _particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
     }
 
@@ -51,7 +49,6 @@ public class PipeDamage : MonoBehaviour
         {
             isPlayerInside = true;
             player = other.gameObject;
-            
         }
     }
 
@@ -66,9 +63,10 @@ public class PipeDamage : MonoBehaviour
 
     private void DamagePlayer()
     {
-        // Assuming the player has a script with a method to take damage
+        if (!shouldFire || player == null) return;
+
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        if (playerHealth != null && shouldFire)
+        if (playerHealth != null)
         {
             playerHealth.TakeDamage(damagePerSecond * Time.deltaTime);
         }
