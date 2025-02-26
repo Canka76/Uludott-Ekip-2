@@ -3,19 +3,30 @@ using UnityEngine;
 
 public class RotateOnXAxisOnly : IClicked
 {
-    public float xAngle = 0f;            // Adjustable X-axis rotation
-    public float rotationSpeed = 50f;    // Rotation speed for X-axis
-    public bool canTurn = true;
-    public bool passed1 = false;
+    public float xAngle = 0f;
+    public float rotationSpeed = 50f;
+    public bool canTurn = false;
+    public bool isPuzzleSolved = false;
+
     [SerializeField] private float delay = 1f;
-    
-    bool canCheck = true;
-    
+    [SerializeField] private PuzzleManager puzzleManager;
+    [SerializeField] private float correctRotationMin = -135f;
+    [SerializeField] private float correctRotationMax = -75f;
+    [SerializeField] private float targetRotation = -90f;
+
+    private bool canCheck = true;
+    private Vector3 initialRotation;
+
+    void Start()
+    {
+        initialRotation = transform.eulerAngles;
+    }
+
     void Update()
     {
         Rotate();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (canTurn && Input.GetKeyDown(KeyCode.E))
         {
             Clicked();
         }
@@ -23,7 +34,7 @@ public class RotateOnXAxisOnly : IClicked
 
     void Rotate()
     {
-        if (canTurn && !passed1)
+        if (canTurn && !isPuzzleSolved)
         {
             xAngle += rotationSpeed * Time.deltaTime;
             transform.eulerAngles = new Vector3(xAngle, 90f, -90f);
@@ -36,31 +47,52 @@ public class RotateOnXAxisOnly : IClicked
         {
             StartCoroutine(CheckPass());
         }
-        
     }
 
     IEnumerator CheckPass()
     {
-        // Capture current X rotation before resetting
         float xRotation = NormalizeAngle(transform.eulerAngles.x);
 
-        if (xRotation <= -75f && xRotation >= -135f)
+        if (xRotation <= correctRotationMax && xRotation >= correctRotationMin)
         {
-            Debug.Log("✅ X rotation is between -75° and -135°.");
-            transform.rotation = Quaternion.Euler(-90f, 90f, -90f);
-            passed1 = true;
+            Debug.Log("✅ Correct rotation!");
+            transform.rotation = Quaternion.Euler(targetRotation, 90f, -90f);
+            isPuzzleSolved = true;
+            canCheck = false; // Prevent further checks
+
+            if (puzzleManager != null)
+            {
+                puzzleManager.PuzzleCompleted(this);
+            }
         }
         else
         {
-            Debug.Log("❌ X rotation is outside the range.");
+            Debug.Log("❌ Incorrect rotation. Restarting...");
             canCheck = false;
             yield return new WaitForSeconds(delay);
-            canCheck = true;
-          
+
+            if (puzzleManager != null)
+            {
+                puzzleManager.RestartPuzzles();
+            }
         }
     }
 
-    // Converts angles from [0°, 360°] to [-180°, 180°]
+    public void ResetPuzzle()
+    {
+        xAngle = 0f;
+        isPuzzleSolved = false;
+        canTurn = false;
+        canCheck = true; // Reset validation flag
+        transform.eulerAngles = initialRotation;
+        Debug.Log($"{gameObject.name} reset. canTurn: {canTurn}, canCheck: {canCheck}");
+    }
+
+    public void EnableChecking(bool enable)
+    {
+        canCheck = enable; // Allow external control
+    }
+
     float NormalizeAngle(float angle)
     {
         angle %= 360f;
