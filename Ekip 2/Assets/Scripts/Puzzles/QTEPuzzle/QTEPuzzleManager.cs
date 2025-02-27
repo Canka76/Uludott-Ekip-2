@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 
-public class QTEPuzzleManager : MonoBehaviour
+public class QTEPuzzleManager : PuzzleManager
 {
     public static QTEPuzzleManager instance;
     
@@ -26,6 +26,8 @@ public class QTEPuzzleManager : MonoBehaviour
     
     private float process = 0;
     
+    [Header("QTE Keys")]
+    [SerializeField]
     private List<KeyCode> keyCodes = new List<KeyCode>
     {
         KeyCode.L, KeyCode.O, KeyCode.V, KeyCode.R, KeyCode.T, KeyCode.E,
@@ -34,7 +36,6 @@ public class QTEPuzzleManager : MonoBehaviour
     private int randIndex = -1;
 
     private float timer;
-    private bool isFocused = false;
 
     void Awake()
     {
@@ -44,7 +45,7 @@ public class QTEPuzzleManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= (spawnInterval) && isFocused)
+        if (timer >= (spawnInterval) && ComputerManager.instance.isFocus)
         {
             randIndex = Random.Range(0, keyCodes.Count);
             SpawnLetter();
@@ -89,17 +90,9 @@ public class QTEPuzzleManager : MonoBehaviour
         processText.text = "Process: " + process.ToString();
     }
     
-    public void IsFocusState(bool state)
+    public override bool IsPuzzleComplete()
     {
-        if (state)
-        {
-            processText.gameObject.SetActive(true);
-        }
-        else
-        {
-            processText.gameObject.SetActive(false);
-        }
-        isFocused = state;
+        return base.isPuzzleComplete;
     }
 
     public float getProcess()
