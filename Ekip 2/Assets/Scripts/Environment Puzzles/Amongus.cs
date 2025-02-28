@@ -9,7 +9,7 @@ public class RotateOnXAxisOnly : IClicked
     public bool isPuzzleSolved = false;
 
     [SerializeField] private float delay = 1f;
-    [SerializeField] private PuzzleManager puzzleManager;
+    [SerializeField] private EnvPuzzleManager puzzleManager;
     [SerializeField] private float correctRotationMin = -135f;
     [SerializeField] private float correctRotationMax = -75f;
     [SerializeField] private float targetRotation = -90f;

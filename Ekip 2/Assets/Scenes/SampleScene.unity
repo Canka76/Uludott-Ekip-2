@@ -1268,9 +1268,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7927298864806592630, guid: 519be5bc8b2d4674f8f6e6c2cd991dcf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 125.93492
+      objectReference: {fileID: 0}
+    - target: {fileID: -7927298864806592630, guid: 519be5bc8b2d4674f8f6e6c2cd991dcf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0273
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 519be5bc8b2d4674f8f6e6c2cd991dcf, type: 3}
       propertyPath: m_Name
       value: StardewYeni
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839724161693886967, guid: 519be5bc8b2d4674f8f6e6c2cd991dcf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 148.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839724161693886967, guid: 519be5bc8b2d4674f8f6e6c2cd991dcf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0322
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1336,6 +1352,46 @@ PrefabInstance:
     - target: {fileID: -7066226923730482950, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0053521264
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.359
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -601018869012299972, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 781340dc6935bbc4796806b59f7ad696, type: 3}
       propertyPath: m_Name

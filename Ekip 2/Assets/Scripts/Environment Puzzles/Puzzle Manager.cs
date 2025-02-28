@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleManager : MonoBehaviour
+public class EnvPuzzleManager : MonoBehaviour
 {
     public RotateOnXAxisOnly[] puzzles;
     private int currentPuzzleIndex = 0;
